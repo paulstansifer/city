@@ -102,7 +102,7 @@ function clickHex(col,row,free) {
 
     build_time = Math.floor(construction_cost / production());
 
-    if (build_time + time_elapsed >= 250) {
+    if (build_time + time_elapsed >= 250 && time_elapsed < 250) {
         alert("In 100 years, you collected "
               + (total_science + (250 - time_elapsed)*total_urbanity).toString() 
               + " science. Or, in the old system, about: " 
