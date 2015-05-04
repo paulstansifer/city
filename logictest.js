@@ -8,6 +8,20 @@ var time_elapsed = 0;
 var total_science = 0;
 var construction_cost = 20;
 
+// the initial seed
+Math.seed = 0;
+
+// source investigated here: http://programmers.stackexchange.com/questions/260969/original-source-of-seed-9301-49297-233280-random-algorithm
+Math.seededRandom = function(max, min) {
+    max = max || 1;
+    min = min || 0;
+
+    Math.seed = (Math.seed * 9301 + 49297) % 233280;
+    var rnd = Math.seed / 233280;
+
+    return min + rnd * (max - min);
+}
+
 
 function generateMap() {
   terrain = new Array(col_dim);
@@ -24,8 +38,8 @@ function generateMap() {
 
 function makeTile(col, row) {
   return {
-    food : Math.floor(Math.random() * Math.random() * 5.5 + 0.5),
-    stuff : Math.floor(Math.random() * 4),
+    food : Math.floor(Math.seededRandom() * Math.seededRandom() * 5.5 + 0.5),
+    stuff : Math.floor(Math.seededRandom() * 4),
     col: col,
     row: row,
     id: 'hex' + col + '_' + row,
