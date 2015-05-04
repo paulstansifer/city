@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+<script src="logictest.js"></script>
+<style>
+.counter {
+  font-size: 60%;
+}
+.construction { font-size: 300%; }
+.noConstructionHex { background-color: #363; }
+.constructionHex { background-color: #555; }
+.hex-in-in {
+  overflow: visible;
+  text-color: #000;
+  width: 100%;
+  height: 100%; 
+  transform: rotate(-60deg);
+
+  /* for formatting the contents */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.hex-in-in:hover {
+  background-color: #400;
+}
+.hex-in {
+  overflow: hidden;
+  transform: rotate(-60deg);
+  width: 100%;
+  height: 100%;
+}
+.hex {
+  float: left;
+  overflow: hidden;
+  transform: rotate(120deg); /* like -60, but brings the contents to their original orientation */
+  width: 57px; /* experimentally determined ) : */
+  height: 50px;
+  margin-right: -13px;
+}
+.hex:nth-child(even) {
+  margin-top: 25px;
+}
+.row {
+  float: left;
+  clear: both;
+  margin-bottom: -24px; /* 5.0 - 1 */
+}
+
+</style>
+<title>VIV</title>
+</head>
+<body onLoad="generateMap()">
+<span id="harvest"></span><br>
+<div class="map"></div>
+
+
+
+</body>
+</html>
