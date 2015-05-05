@@ -26,7 +26,7 @@ Math.seededRandom = function(max, min) {
 
 
 function generateMap() {
-  bucketed = (location.search.contains("bucketed"));
+  bucketed = (location.search.indexOf("bucketed") >= 0);
 
   terrain = new Array(col_dim);
   for(var col = 0; col < col_dim; col++) {
