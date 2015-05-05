@@ -8,6 +8,8 @@ var time_elapsed = 0;
 var total_science = 0;
 var construction_cost = 50;
 
+var bucketed = false;
+
 // the initial seed
 Math.seed = 0;
 
@@ -24,6 +26,8 @@ Math.seededRandom = function(max, min) {
 
 
 function generateMap() {
+  bucketed = (location.search.contains("bucketed"));
+
   terrain = new Array(col_dim);
   for(var col = 0; col < col_dim; col++) {
     terrain[col] = new Array(row_dim);
@@ -31,15 +35,26 @@ function generateMap() {
       terrain[col][row] = makeTile(col, row);
     }
   }
-  $(".map").html(terrain.map(displayRow).join(''));
+  $(".map").html(terrain.map(displayRow).join(''));  
 
   clickHex(10,10,true);
 }
 
 function makeTile(col, row) {
+  var dist;
+
+  if (bucketed) {
+      dist = [{f: 0, s: 0}, {f: 2, s: 0}, {f: 2, s: 0}, {f: 2, s: 3}, {f: 1, s: 3},
+              {f: 0, s: 0}, {f: 2, s: 0}, {f: 2, s: 0}, {f: 2, s: 3}, {f: 1, s: 3},
+              {f: 4, s: 0}, {f: 4, s: 4}, {f: 0, s: 6}][Math.floor(Math.seededRandom()*12.5)];
+  } else {
+      dist = {f: Math.floor(Math.seededRandom() * Math.seededRandom() * 5.5 + 0.5), 
+              s: Math.floor(Math.seededRandom() * 4)};
+  }
+
   return {
-    food : Math.floor(Math.seededRandom() * Math.seededRandom() * 5.5 + 0.5),
-    stuff : Math.floor(Math.seededRandom() * 4),
+    food: dist.f,
+    stuff: dist.s,
     col: col,
     row: row,
     id: 'hex' + col + '_' + row,
