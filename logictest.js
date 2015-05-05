@@ -6,7 +6,7 @@ var total_stuff_harvest = 0;
 var total_urbanity = 0;
 var time_elapsed = 0;
 var total_science = 0;
-var construction_cost = 50;
+var construction_cost = 200;
 
 var bucketed = false;
 
@@ -117,14 +117,13 @@ function clickHex(col,row,free) {
 
     build_time = Math.floor(construction_cost / production());
 
-    if (build_time + time_elapsed >= 250 && time_elapsed < 250) {
-        alert("In 100 years, you collected "
-              + (total_science + (250 - time_elapsed)*total_urbanity).toString() 
-              + " science. Or, in the old system, about: " 
-              + ((total_science + (250 - time_elapsed)*total_urbanity) / 2.5).toString() );
+    if (build_time + time_elapsed >= 1000 && time_elapsed < 1000) {
+        alert("In 1000 years, you collected "
+              + Math.floor((total_science + (1000 - time_elapsed)*total_urbanity) / 1000).toString()
+              + "k science.");
     }
 
-    construction_cost += 50;
+    construction_cost += 200;
 
     time_elapsed += build_time;
     total_science += total_urbanity*build_time;
