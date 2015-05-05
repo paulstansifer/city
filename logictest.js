@@ -35,6 +35,20 @@ function generateMap() {
       terrain[col][row] = makeTile(col, row);
     }
   }
+
+
+  if (location.search.indexOf("smeared") >= 0) {
+    for(var col = 0; col < col_dim; col++) {
+      for(var row = 0; row < 20; row++) { 
+        adjs = adjacentTiles(row, col);
+        adj = adjs[Math.floor(Math.seededRandom()*adjs.length)];
+  
+        terrain[col][row].food = adj.food;
+        terrain[col][row].stuff = adj.stuff;
+      }
+    }
+  }
+
   $(".map").html(terrain.map(displayRow).join(''));  
 
   clickHex(10,10,true);
